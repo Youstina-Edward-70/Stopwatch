@@ -1,0 +1,227 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Tajawal", sans-serif;
+    outline: none;
+}
+
+:root {
+    --one: #FFECC0;
+    --two: #FFC29B;
+    --three: #F39F9F;
+    --four: #B95E82;
+    --five: #FFFFFF;
+    --six: #FF9E80;
+    --seven: #4DB6AC;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--one);
+    /* overflow-y: auto; */
+}
+
+.outer-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: var(--five);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.outer-circle::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(-45deg, #b5e0f5, #c9d6ff, #e0c3fc, #fbc2eb);
+    background-size: 400% 400%;
+    animation: gradient 7s ease infinite;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 0;
+}
+
+.outer-circle.animation-bg::before {
+    opacity: 1;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.inner-circle {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background-color: var(--four);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.hour {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--five);
+}
+
+.time {
+    text-align: center;
+    color: var(--five);
+    font-weight: bold;
+}
+
+.time .min {
+    font-size: 3rem;
+}
+
+.time.s {
+    width: 20%;
+}
+
+.time .sec {
+    font-size: 2.5rem;
+}
+
+.time.ms {
+    width: 10%;
+}
+
+.time .msec {
+    font-size: 1.75rem;
+}
+
+.buttons {
+    width: 300px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 2px solid var(--five);
+    color: var(--five);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button:hover {
+    background-color: var(--five);
+    color: var(--four);
+}
+
+.lap {
+    background-color: var(--two);
+}
+
+.play {
+    background-color: var(--three);
+}
+
+.reset {
+    background-color: var(--six);
+}
+
+.laps {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 250px;
+    overflow: auto;
+    list-style: none;
+    color: var(--five);
+    margin-top: 30px;
+}
+
+.laps::-webkit-scrollbar {
+    display: none;
+}
+
+.lap-item {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background-color: var(--seven);
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.5s;
+}
+
+.lap-item.lap-animate {
+    max-height: 100px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.laps .timer {
+    margin-left: 25px;
+}
+
+.laps .lap-clear {
+    position: fixed;
+    bottom: 35px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 150px;
+    padding: 10px 0;
+    border-radius: 25px;
+    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--four);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--five);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.laps .lap-clear:hover {
+    background-color: var(--five);
+}
+
+.hidden {
+    visibility: hidden;
+}
